@@ -1,1 +1,425 @@
-webpackJsonp([0],{0:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}var o=n(1),a=r(o),u=n(28),i=n(166),s=r(i);(0,u.render)(a.default.createElement(s.default,{stop:new Date("Mon Nov 30 2016 12:36:45 GMT+0300 (MSK)")}),document.getElementById("application-wrapper"))},166:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function u(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var i=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),s=n(1),f=r(s),l=n(167),c=r(l),p=n(171),d=r(p);n(172);var y=function(e){function t(e){o(this,t);var n=a(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.state={diff:n.getDiffObject()},n}return u(t,e),i(t,[{key:"componentDidMount",value:function(){var e=this;this.interval=window.setInterval(function(){return e.updateTime()},1e3)}},{key:"componentWillUnmount",value:function(){window.clearInterval(this.interval)}},{key:"getDiffObject",value:function(){var e=Math.abs(this.props.stop-(new Date).getTime()),t=Math.floor(e/1e3),n=Math.floor(t/60),r=Math.floor(n/60);Math.floor(r/24);return{days:Math.floor(r/24),hours:r%24,minutes:n%60,seconds:t%60}}},{key:"updateTime",value:function(){this.setState({diff:this.getDiffObject()})}},{key:"getFormattedVal",value:function(e){return(e<10?"0"+e:e)+""}},{key:"render",value:function(){var e=this,t={days:[[0,9],[0,9]],hours:[[0,2],[0,4]],minutes:[[0,5],[0,9]],seconds:[[0,5],[0,9]]};return f.default.createElement("div",{className:"countdown"},Object.keys(this.state.diff).map(function(n){return f.default.createElement("div",{key:n,className:"countdown-"+n},Array(2).fill(0).map(function(r,o){return f.default.createElement(c.default,{key:""+n+o,reverse:!0,now:+e.getFormattedVal(e.state.diff[n])[o],min:t[n][o][0],max:t[n][o][1]})}))}))}}]),t}(f.default.PureComponent);y.propTypes=d.default.types,y.defaultProps=d.default.defaults,t.default=y},167:function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{default:e}}function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function u(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var i=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),s=n(1),f=r(s),l=n(168),c=r(l);n(169);var p=function(e){function t(e){o(this,t);var n=a(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e));return n.state={toggle:!1},n}return u(t,e),i(t,[{key:"tick",value:function(){this.setState({toggle:!this.state.toggle})}},{key:"getCount",value:function(e,t){var n=this.props.reverse,r="next"==t,o=this.props[n?"min":"max"],a=this.props[n?"max":"min"];return r?e==o?a:e+(n?-1:1):e==a?o:e+(n?1:-1)}},{key:"componentWillReceiveProps",value:function(e){e.now!==this.props.now&&this.tick()}},{key:"getRange",value:function(e){var t=this.getCount(e,"prev"),n=[e,t,this.getCount(t,"prev")];return n[this.state.toggle?"push":"unshift"](this.state.toggle?this.getCount(t,"prev"):this.getCount(e,"next")),n}},{key:"render",value:function(){var e=this;return f.default.createElement("div",{className:"cards"},this.getRange(this.props.now).map(function(t,n){return f.default.createElement("div",{key:"flip-card"+n,className:"card"+(t==e.props.now?" now":"")},f.default.createElement("div",{className:"sides"},["front","back"].map(function(n){return f.default.createElement("div",{key:"side"+n,className:"side "+n},f.default.createElement("div",{className:"side-num"},"front"==n?t:e.getCount(t,"next")))})))}))}}]),t}(f.default.PureComponent);p.propTypes=c.default.types,p.defaultProps=c.default.defaults,t.default=p},168:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(1);t.default={types:{reverse:r.PropTypes.bool,now:r.PropTypes.number.isRequired,min:r.PropTypes.number,max:r.PropTypes.number},defaults:{reverse:!1,now:0,min:0,max:9}}},169:function(e,t){},171:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(1);t.default={types:{stop:r.PropTypes.instanceOf(Date),onStart:r.PropTypes.func,onStop:r.PropTypes.func},defaults:{stop:new Date("Mon Nov 30 2020 00:00:00 GMT+0300 (MSK)")}}},172:function(e,t){}});
+webpackJsonp([0],{
+
+/***/ 0:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(32);
+
+	var _Countdown = __webpack_require__(178);
+
+	var _Countdown2 = _interopRequireDefault(_Countdown);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	(0, _reactDom.render)(_react2.default.createElement(_Countdown2.default, {
+	    stop: new Date("Mon Nov 30 2016 12:36:45 GMT+0300 (MSK)")
+	}), document.getElementById('application-wrapper'));
+
+/***/ },
+
+/***/ 178:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Flipper = __webpack_require__(179);
+
+	var _Flipper2 = _interopRequireDefault(_Flipper);
+
+	var _schema = __webpack_require__(183);
+
+	var _schema2 = _interopRequireDefault(_schema);
+
+	__webpack_require__(184);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Countdown = function (_React$PureComponent) {
+	  _inherits(Countdown, _React$PureComponent);
+
+	  function Countdown(props) {
+	    _classCallCheck(this, Countdown);
+
+	    /**
+	     * @type {object}
+	     * @property {object} diff - initial diff object
+	     */
+	    var _this = _possibleConstructorReturn(this, (Countdown.__proto__ || Object.getPrototypeOf(Countdown)).call(this, props));
+
+	    _this.state = {
+	      diff: _this.getDiffObject()
+	    };
+	    return _this;
+	  }
+
+	  /**
+	   * Create second interval
+	   */
+
+
+	  _createClass(Countdown, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      this.interval = window.setInterval(function () {
+	        return _this2.updateTime();
+	      }, 1000);
+	    }
+
+	    /**
+	     * Destroy second interval
+	     */
+
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      window.clearInterval(this.interval);
+	    }
+
+	    /**
+	     * Calculate diff object between stop and current date
+	     * @return {Object} formatted value
+	     */
+
+	  }, {
+	    key: 'getDiffObject',
+	    value: function getDiffObject() {
+	      var ms = Math.abs(this.props.stop - new Date().getTime()),
+	          s = Math.floor(ms / 1000),
+	          m = Math.floor(s / 60),
+	          h = Math.floor(m / 60),
+	          d = Math.floor(h / 24);
+
+	      return {
+	        days: Math.floor(h / 24),
+	        hours: h % 24,
+	        minutes: m % 60,
+	        seconds: s % 60
+	      };
+	    }
+
+	    /**
+	     * Update state with calcualted diff object
+	     */
+
+	  }, {
+	    key: 'updateTime',
+	    value: function updateTime() {
+	      this.setState({ diff: this.getDiffObject() });
+	    }
+
+	    /**
+	     * Returns formated to 2 digits string
+	     * @param {Number} data - raw value
+	     * @return {String} formatted value
+	     */
+
+	  }, {
+	    key: 'getFormattedVal',
+	    value: function getFormattedVal(data) {
+	      return (data < 10 ? '0' + data : data) + '';
+	    }
+
+	    /**
+	     * Render Flipper component for each digit of diff object vals
+	     * @return {ReactElement} markup
+	     */
+
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this3 = this;
+
+	      var forks = {
+	        days: [[0, 9], [0, 9]],
+	        hours: [[0, 2], [0, 4]],
+	        minutes: [[0, 5], [0, 9]],
+	        seconds: [[0, 5], [0, 9]]
+	      };
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'countdown' },
+	        Object.keys(this.state.diff).map(function (key) {
+	          return _react2.default.createElement(
+	            'div',
+	            {
+	              key: key,
+	              className: 'countdown-' + key },
+	            [0, 1].map(function (i) {
+	              return _react2.default.createElement(_Flipper2.default, {
+	                key: '' + key + i,
+	                reverse: true,
+	                now: +_this3.getFormattedVal(_this3.state.diff[key])[i],
+	                min: forks[key][i][0],
+	                max: forks[key][i][1]
+	              });
+	            })
+	          );
+	        })
+	      );
+	    }
+	  }]);
+
+	  return Countdown;
+	}(_react2.default.PureComponent);
+
+	;
+
+	Countdown.propTypes = _schema2.default.types;
+
+	Countdown.defaultProps = _schema2.default.defaults;
+
+	exports.default = Countdown;
+
+/***/ },
+
+/***/ 179:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _schema = __webpack_require__(180);
+
+	var _schema2 = _interopRequireDefault(_schema);
+
+	__webpack_require__(181);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Flipper = function (_React$PureComponent) {
+	  _inherits(Flipper, _React$PureComponent);
+
+	  function Flipper(props) {
+	    _classCallCheck(this, Flipper);
+
+	    /**
+	     * @type {object}
+	     * @property {object} toggle - flag for switching index of current digit index
+	     */
+	    var _this = _possibleConstructorReturn(this, (Flipper.__proto__ || Object.getPrototypeOf(Flipper)).call(this, props));
+
+	    _this.state = { toggle: false };
+	    return _this;
+	  }
+
+	  /**
+	   * Inverse state.toggle flag
+	   */
+
+
+	  _createClass(Flipper, [{
+	    key: 'tick',
+	    value: function tick() {
+	      this.setState({ toggle: !this.state.toggle });
+	    }
+
+	    /**
+	     * Returns next/prev value of digits linked list
+	     * @param {number} current - currently active value
+	     * @param {string} direction - list move direction
+	     * @return {number} linked list value
+	     */
+
+	  }, {
+	    key: 'getCount',
+	    value: function getCount(current, direction) {
+	      var isRev = this.props.reverse,
+	          isNext = direction == 'next',
+	          head = this.props[isRev ? 'min' : 'max'],
+	          tail = this.props[isRev ? 'max' : 'min'];
+
+	      return isNext ? current == head ? tail : current + (isRev ? -1 : 1) : current == tail ? head : current + (isRev ? 1 : -1);
+	    }
+
+	    /**
+	     * Execute flip action in 'props.now' value has been changed
+	     * @param {object} newProps - next props object
+	     */
+
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(newProps) {
+	      newProps.now !== this.props.now && this.tick();
+	    }
+
+	    /**
+	     * Generate semi linked list structure with siblings of active number
+	     * Index of active number depends of 'state.toggle' flag
+	     * @param {object} newProps - next props object
+	     * @return {array} linked list slice
+	     */
+
+	  }, {
+	    key: 'getRange',
+	    value: function getRange(initial) {
+	      var prev = this.getCount(initial, 'prev'),
+	          arr = [initial, prev, this.getCount(prev, 'prev')];
+
+	      arr[!this.state.toggle ? 'unshift' : 'push'](!this.state.toggle ? this.getCount(initial, 'next') : this.getCount(prev, 'prev'));
+
+	      return arr;
+	    }
+
+	    /**
+	     * Render card sets for number
+	     * @return {ReactElement} markup
+	     */
+
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'cards' },
+	        this.getRange(this.props.now).map(function (val, i) {
+	          return _react2.default.createElement(
+	            'div',
+	            {
+	              key: 'flip-card' + i,
+	              className: 'card' + (val == _this2.props.now ? ' now' : '') },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'sides' },
+	              ['front', 'back'].map(function (key) {
+	                return _react2.default.createElement(
+	                  'div',
+	                  { key: 'side' + key, className: 'side ' + key },
+	                  _react2.default.createElement(
+	                    'div',
+	                    { className: 'side-num' },
+	                    key == 'front' ? val : _this2.getCount(val, 'next')
+	                  )
+	                );
+	              })
+	            )
+	          );
+	        })
+	      );
+	    }
+	  }]);
+
+	  return Flipper;
+	}(_react2.default.PureComponent);
+
+	;
+
+	Flipper.propTypes = _schema2.default.types;
+
+	Flipper.defaultProps = _schema2.default.defaults;
+
+	exports.default = Flipper;
+
+/***/ },
+
+/***/ 180:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	exports.default = {
+	  types: {
+	    reverse: _react.PropTypes.bool,
+	    now: _react.PropTypes.number.isRequired,
+	    min: _react.PropTypes.number,
+	    max: _react.PropTypes.number
+	  },
+
+	  defaults: {
+	    reverse: false,
+	    now: 0,
+	    min: 0,
+	    max: 9
+	  }
+	};
+
+/***/ },
+
+/***/ 181:
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ 183:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	exports.default = {
+
+	  types: {
+	    stop: _react.PropTypes.instanceOf(Date),
+	    onStart: _react.PropTypes.func,
+	    onStop: _react.PropTypes.func
+	  },
+
+	  defaults: {
+	    stop: new Date("Mon Nov 30 2020 00:00:00 GMT+0300 (MSK)")
+	  }
+	};
+
+/***/ },
+
+/***/ 184:
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }
+
+});
